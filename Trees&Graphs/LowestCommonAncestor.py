@@ -64,24 +64,11 @@ def lca(root, v1, v2):
     v2_path = []
     v1_path = pathmaker(root, v1, v1_path)
     v2_path = pathmaker(root, v2, v2_path)
-    high = 0
-    for num1 in v1_path:
-        for num2 in v2_path:
-            if num1 == num2:
-                if num1.info> high:
-                    high = num1
-    return high
+    for i in range(0, min(len(v1_path), len(v2_path))):
+        if v1_path[i] == v2_path[i]:
+            return v2_path[i]
+        
+
 
   
 tree = BinarySearchTree()
-t = int(input())
-
-arr = list(map(int, input().split()))
-
-for i in range(t):
-    tree.create(arr[i])
-
-v = list(map(int, input().split()))
-
-ans = lca(tree.root, v[0], v[1])
-print (ans.info)
